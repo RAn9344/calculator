@@ -1,0 +1,102 @@
+<html>
+<head>
+<style>
+  .pass {
+    color: green;
+  }
+  .good {
+    color: yellow;
+  }
+  .fail {
+    color: red;
+  }
+</style>
+</head>
+<body><center>
+    <header>
+        <h1>Student Mark Portal</h1>
+    </header>
+<table border="1">
+  <tr>
+    <td>Tamil (out of 100):</td>
+    <td><input type="text" id="sub1" onkeyup="calculateResults()"></td>
+  </tr>
+  <tr>
+    <td>English (out of 100):</td>
+    <td><input type="text" id="sub2" onkeyup="calculateResults()"></td>
+  </tr>
+  <tr>
+    <td>Maths (out of 100):</td>
+    <td><input type="text" id="sub3" onkeyup="calculateResults()"></td>
+  </tr>
+  <tr>
+    <td>Science (out of 100):</td>
+    <td><input type="text" id="sub4" onkeyup="calculateResults()"></td>
+  </tr>
+  <tr>
+    <td>SocialScience (out of 100):</td>
+    <td><input type="text" id="sub5" onkeyup="calculateResults()"></td>
+  </tr>
+  <tr>
+    <td>Total Marks (out of 500):</td>
+    <td><input type="text" id="totalMarks" readonly></td>
+  </tr>
+  <tr>
+    <td>Average Percentage:</td>
+    <td><input type="text" id="averagePercentage" readonly></td>
+  </tr>
+  <tr>
+    <td>Result:</td>
+    <td><span id="finalResult"></span></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center">
+      <button onclick="clearAll()">Clear All</button>
+    </td>
+  </tr>
+</table>
+
+<script>
+function calculateResults() {
+  var sub1 = parseInt(document.getElementById("sub1").value) || 0;
+  var sub2 = parseInt(document.getElementById("sub2").value) || 0;
+  var sub3 = parseInt(document.getElementById("sub3").value) || 0;
+  var sub4 = parseInt(document.getElementById("sub4").value) || 0;
+  var sub5 = parseInt(document.getElementById("sub5").value) || 0;
+
+  var totalMarks = sub1 + sub2 + sub3 + sub4 + sub5;
+  document.getElementById("totalMarks").value = totalMarks;
+
+  var averagePercentage = (totalMarks / 500) * 100;
+  document.getElementById("averagePercentage").value = averagePercentage.toFixed(2) + "%";
+
+  var finalResultSpan = document.getElementById("finalResult");
+  finalResultSpan.className = ""; // Clear previous class
+
+  if (averagePercentage >= 75) {
+    finalResultSpan.textContent = "Pass";
+    finalResultSpan.className = "pass";
+  } else if (averagePercentage >= 55) {
+    finalResultSpan.textContent = "Good";
+    finalResultSpan.className = "good";
+  } else {
+    finalResultSpan.textContent = "Fail";
+    finalResultSpan.className = "fail";
+  }
+}
+
+function clearAll() {
+  document.getElementById("sub1").value = "";
+  document.getElementById("sub2").value = "";
+  document.getElementById("sub3").value = "";
+  document.getElementById("sub4").value = "";
+  document.getElementById("sub5").value = "";
+  document.getElementById("totalMarks").value = "";
+  document.getElementById("averagePercentage").value = "";
+  document.getElementById("finalResult").textContent = "";
+  document.getElementById("finalResult").className = "";
+}
+</script>
+
+</body></center>
+</html>
